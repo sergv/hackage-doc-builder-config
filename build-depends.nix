@@ -11,6 +11,7 @@ with pkgs; [
   m4
   gnused
   gawk
+  pkg-config
 
   # Haskell build tools
   # These should really be handled via build-tool-depends declared in the cabal
@@ -20,37 +21,60 @@ with pkgs; [
   haskellPackages.alex
   haskellPackages.BNFC
   haskellPackages.c2hs
+  haskellPackages.cpphs
   haskellPackages.happy
   haskellPackages.hspec-discover
   haskellPackages.markdown-unlit
   haskellPackages.tasty-discover
 
   # Native libraries
-  blas
+  blas # blas-ffi
   brotli
-  bzip2
+  bzip2 # bnb-staking-csvs
+  curl # curl
+  expat # cairo-image
   freealut
   freeglut
   freetds
   freetype
+  fribidi # simple-pango
   glew
   glfw
   gsl
   hdf5
   icu
-  lapack
-  libGLU
+  lapack # lapack-ffi
+  libdatrie # simple-pango
   libevdev
+  libGL # GLUT, etc.
+  libGLU # GLURaw
   libglvnd
   libjpeg
-  libsodium
+  libselinux # simple-pango
+  libsepol # simple-pango
+  libsodium # libsodium-bindings
+  libthai # simple-pango
+  libxml2 # c14n
   ncurses
-  openal
+  nettle # nettle
+  nlopt # srtree
+  openal # OpenAL
   openssl
-  pcre
+  pango # simple-pango
+  pcre # regex-pcre
+  pcre2 # simple-cairo
   postgresql.lib
   sdl3
-  xz
+  systemdMinimal # hidapi requires udev
+  util-linux # simple-pango requires mount
+  xorg.libX11 # GLFW-b
+  xorg.libXcursor # GLFW-b
+  xorg.libXdmcp # simple-cairo
+  xorg.libXi # GLFW-b
+  xorg.libXinerama # GLFW-b
+  xorg.libXrandr # GLFW-b
+  xorg.libXxf86vm # GLFW-b
+  xz # lzma
   zeromq4
   zlib
 ]
