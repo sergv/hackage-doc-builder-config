@@ -56,7 +56,9 @@
 
           cabal-install = hsPkgs.callCabal2nix "cabal-install" "${inputs.cabal}/cabal-install" { inherit (final) Cabal cabal-install-solver hackage-security; };
           cabal-install-solver = hsPkgs.callCabal2nix "cabal-install-solver" "${inputs.cabal}/cabal-install-solver" { inherit (final) Cabal; };
-          Cabal = hsPkgs.callCabal2nix "Cabal" "${inputs.cabal}/Cabal" { inherit (final) Cabal-syntax; };
+          Cabal = (hsPkgs.callCabal2nix "Cabal" "${inputs.cabal}/Cabal" { inherit (final) Cabal-syntax; }).overrideAttrs (old: {
+            patches = (old.patches or []) ++ [./cabal-hsc2hs-args-patch.diff];
+          });
           Cabal-syntax = hsPkgs.callCabal2nix "Cabal-syntax" "${inputs.cabal}/Cabal-syntax" { };
           Cabal-described = hsPkgs.callCabal2nix "Cabal-described" "${inputs.cabal}/Cabal-described" { };
           Cabal-QuickCheck = hsPkgs.callCabal2nix "Cabal-QuickCheck" "${inputs.cabal}/Cabal-QuickCheck" { };
